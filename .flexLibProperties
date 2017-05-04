@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="priv.yakiler.hf.interfaces.ICommand"/>
+    <classEntry path="priv.yakiler.hf.interfaces.IController"/>
+    <classEntry path="priv.yakiler.hf.resource.factory.SingleFactory"/>
+    <classEntry path="priv.yakiler.hf.mvc.model.Model"/>
+    <classEntry path="priv.yakiler.hf.mvc.model.vo.ValueObejct"/>
+    <classEntry path="priv.yakiler.hf.interfaces.IValueObject"/>
+    <classEntry path="priv.yakiler.hf.interfaces.IModel"/>
+    <classEntry path="priv.yakiler.hf.interfaces.IView"/>
+    <classEntry path="priv.yakiler.hf.event.HFEvent"/>
+    <classEntry path="priv.yakiler.hf.mvc.command.CommandManager"/>
+    <classEntry path="priv.yakiler.hf.resource.factory.ResourceFactory"/>
+    <classEntry path="priv.yakiler.hf.uitl.LocaleUtil"/>
+    <classEntry path="priv.yakiler.hf.event.HFDispatcher"/>
+    <classEntry path="priv.yakiler.hf.error.HFError"/>
+    <classEntry path="priv.yakiler.hf.mvc.controller.ControllerBase"/>
+    <classEntry path="priv.yakiler.hf.enum.ResourceEnum"/>
+    <classEntry path="priv.yakiler.hf.mvc.command.MultiCommand"/>
+    <classEntry path="priv.yakiler.hf.mvc.command.CommandBase"/>
+    <classEntry path="priv.yakiler.hf.dataStructure.Queue"/>
+    <classEntry path="priv.yakiler.hf.event.CommandEvent"/>
+    <classEntry path="priv.yakiler.hf.shortcut.Shortcut"/>
+    <classEntry path="priv.yakiler.kf.mvc.command.RedoCommand"/>
+    <classEntry path="priv.yakiler.hf.uitl.LogUtil"/>
+    <classEntry path="priv.yakiler.hf.mvc.command.CommandData"/>
+    <classEntry path="priv.yakiler.hf.dataStructure.Stack"/>
+    <classEntry path="priv.yakiler.hf.interfaces.ICommandData"/>
+    <classEntry path="priv.yakiler.hf.uitl.SerializationUtil"/>
+    <classEntry path="priv.yakiler.hf.error.ErrorAction"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
