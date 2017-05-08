@@ -3,24 +3,29 @@ package priv.yakiler.hf.error
 	import flash.display.LoaderInfo;
 	import flash.events.ErrorEvent;
 	import flash.events.UncaughtErrorEvent;
+	import flash.utils.Dictionary;
 	
 	import mx.formatters.DateFormatter;
+	
+	import priv.yakiler.hf.interfaces.IGlobalExceptionFilter;
 
-	public class ErrorAction
+	/**
+	 * 全局异常侦听器：捕获全局异常，可指定某些异常是否允许取消默认事件
+	 * */
+	public class GlobalExceptionManager
 	{
 		private var loaderInfo:LoaderInfo;
-		/**发送错误异常后是否取消默认行为*/
-		private var prevenDefault:Boolean;
 		protected var message:String = "";
 		protected var errorLogs:Object = {};
+		protected var globalExceptionFilters:Vector.<IGlobalExceptionFilter>;
 		
 		/**
 		 * 构造函数
-		 * @param preventDefault:Boolean 发送错误异常后是否取消默认行为
+		 * @param globalExceptionFilters:Vector.<IGlobalExceptionFilter> 指定的异常是否允许取消默认行为
 		 * */
-		public function ErrorAction( preventDefault:Boolean )
+		public function GlobalExceptionManager( globalExceptionFilters:Vector.<IGlobalExceptionFilter> )
 		{
-			this.prevenDefault = preventDefault;
+			this.globalExceptionFilters = globalExceptionFilters;
 		}
 		
 		/**初始化异常处理器，必须提供有效的loaderInfo*/
@@ -39,11 +44,6 @@ package priv.yakiler.hf.error
 		
 		protected function onUncaughtErrorEvent(event:UncaughtErrorEvent):void
 		{
-			if( prevenDefault ) 
-			{
-				event.preventDefault();
-			}
-			
 			if(event.error is Error)
 			{
 				//只有FP11.5以上才能在非debug版本中调用getStackTrace()。
@@ -66,6 +66,24 @@ package priv.yakiler.hf.error
 			errorLogs[ fmtDate(new Date) ] = message;
 			
 			message = "";
+			
+			if( getFilter( event.error ) )
+			{
+				event.preventDefault();
+			}
+		}
+		
+		/**获取指定异常的过滤器*/
+		public function getFilter( errorClass:Class ):IGlobalExceptionFilter
+		{
+			for each (var globalExceptionFilter:IGlobalExceptionFilter in globalExceptionFilters) 
+			{
+				if( globalExceptionFilter.errorClass == errorClass )
+				{
+					return globalExceptionFilter;
+				}
+			}
+			return null;
 		}
 		
 		public function getLogs():String

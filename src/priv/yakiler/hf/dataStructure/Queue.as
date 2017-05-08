@@ -4,9 +4,14 @@ package priv.yakiler.hf.dataStructure
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 
-	/**队列（数组形式）的简单实现，与栈不同的是它总是先进后出*/
+	/**
+	 * 队列（数组形式）的简单实现，与栈不同的是它总是先进后出。
+	 * */
 	public class Queue implements IEventDispatcher
 	{
+		//TODO: 由于数组在开头的操作（插入、删除）很慢，需要优化。尝试将队列拆分为2个数组，
+		//一个数组用于入队，一个数组装填元数据
+		
 		// ---------------------------------------------------------------------------------
 		//
 		//		静态常量

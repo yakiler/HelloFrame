@@ -157,7 +157,7 @@ package priv.yakiler.hf.dataStructure
 			return datas[0] || null;
 		}
 		
-		/**栈底，返回null表示空栈*/
+		/**栈尾，返回null表示空栈*/
 		public function get tail():*
 		{
 			return datas[ datas.length - 1 ] || null;

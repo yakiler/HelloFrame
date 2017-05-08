@@ -29,6 +29,7 @@
     <classEntry path="priv.yakiler.hf.interfaces.ICommandData"/>
     <classEntry path="priv.yakiler.hf.uitl.SerializationUtil"/>
     <classEntry path="priv.yakiler.hf.error.ErrorAction"/>
+    <classEntry path="priv.yakiler.hf.interfaces.IGlobalExceptionFilter"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
