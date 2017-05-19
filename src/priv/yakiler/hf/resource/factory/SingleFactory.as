@@ -9,7 +9,7 @@ package priv.yakiler.hf.resource.factory
 	import priv.yakiler.hf.error.HFError;
 
 	/**
-	 * 生成app内唯一实例，仅适用于有且只有一个实例的情况如：controller,manager,某些视图等。
+	 * 单例工厂：生成和保存app内唯一实例，仅适用于有且只有一个实例的情况如：controller,manager,某些视图等。
 	 * <p>注意：生成的实例会自动执行垃圾回收，如确认某些实例不需要回收，请至少保留一个引用。</p>
 	 * */
 	public class SingleFactory
@@ -48,7 +48,24 @@ package priv.yakiler.hf.resource.factory
 		}
 		
 		/**
-		 * 删除由SingletonFactory创建的实例
+		 * 注入实例，稍后可从全局任意位置通过单例工厂获取该实例
+		 * */
+		public static function injectInstance( instance:* ):void
+		{
+			var packageName:String = getQualifiedClassName( instance );
+			var clazz:Class = getDefinitionByName( packageName ) as Class;
+			if( packageName )
+			{
+				registerClassAlias( packageName, clazz );
+				singletons[ clazz ] = instance;
+			}else
+			{
+				throw HFErrorEnum.INPUT_PARAM_INVALITE;
+			}
+		}
+		
+		/**
+		 * 删除由SingletonFactory创建的实例 和 通过<code>injectInstance</code>注入的实例
 		 * */
 		public static function removeInstance( instance:* ):void
 		{
